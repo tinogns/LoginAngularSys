@@ -47,10 +47,13 @@ export class UserSupport1Service {
         .requestProfile( firstname, email, password, phone)
         .subscribe(
           (response) => {
+            console.log(response)
             callback(response);
           },
           (error) => {
+            console.log(error)
             callback(error);
+            
           }
         );
   

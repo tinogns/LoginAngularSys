@@ -1,21 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {environment} from '../../environments/environment'
+import { environment } from '../../environments/environment'
 
 @Injectable({
     providedIn: 'root'
-  })
+})
 
-export class ApiService{
+export class ApiService {
 
     baseUrl: string = environment.backend.host;
 
-    constructor(private http: HttpClient){}
+    constructor(private http: HttpClient) { }
 
-    requestLogin(email,password) {
+    requestLogin(email, password) {
         console.log(`${this.baseUrl}/login`)
-        const loginData ={
+        const loginData = {
             email,
             password,
         }
@@ -25,29 +25,32 @@ export class ApiService{
         });
 
         return this.http
-        .post(`${this.baseUrl}/login`, loginData, { headers })
+            .post(`${this.baseUrl}/login`, loginData, { headers })
     }
 
-    requestProfile(
-        firstname,
-        email,
-        password,
-        phone
-    )
-    {
+
+
+
+
+
+
+
+    requestProfile( first_name, email, password, phone) {
+
         const ProfileData = {
-            firstname,
+            first_name,
             email,
             password,
             phone
         };
 
+        console.log('Profile Data:', ProfileData)
+
         let headers = new HttpHeaders({
             'Content-Type': 'application/json; charset=utf-8',
-            
-          });
-        
-          return this.http
-      .put(`${this.baseUrl}/register`, ProfileData, { headers })
+
+        });
+
+        return this.http.post(`${this.baseUrl}`, ProfileData, { headers });
     }
 }

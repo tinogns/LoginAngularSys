@@ -3,6 +3,8 @@ import { FormBuilder , FormGroup , Validators} from '@angular/forms';
 import { from, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserSupport1Service } from 'src/app/services/user-support.service';
+import { Router } from '@angular/router';
+import {MustMatch} from '../shared/MustMatch'
 
 
 @Component({
@@ -14,18 +16,14 @@ export class RegistersComponent implements OnInit {
 
   showAlertBox: boolean = false;
   alertMessage: string = '';
-  // postdata: any = {};
   form: FormGroup;
   submitted = false;
 
-  firstname: string;
-  email: string;
-  password: string;
-  phone: string;
-
-  constructor(private http: HttpClient,
+  constructor(
+    private http: HttpClient,
     private _userSupportService: UserSupport1Service,
     private formBuilder: FormBuilder,
+    private router: Router,
   ) { }
 
  
@@ -35,24 +33,36 @@ export class RegistersComponent implements OnInit {
       firstName: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', Validators.required],
       phone: ['', Validators.required]
+    },{
+      validators: MustMatch('password','confirmPassword')
     });
   }
 
   // convenience getter for easy access to form fields
   get f() { return this.form.controls; }
 
+
+// Register
   onSubmit() {
     this.submitted = true;
 
-    if (this.form.invalid) {
-      return;
-  }
+    if (this.form.invalid) return;
+
+    let frist_name = this.form.value.firstName;
+    let email = this.form.value.email;
+    let password = this.form.value.password;
+    let phone = this.form.value.phone;
+
+  
     this._userSupportService.onRequestProfile(
-      this.firstname,
-      this.email,
-      this.password,
-      this.phone,
+      frist_name,
+      email,
+      password,
+      phone,
+
+      
 
       response => {
        console.log(response.success)
@@ -63,7 +73,7 @@ export class RegistersComponent implements OnInit {
           );
           return;
        }
-       
+       this.router.navigate(['/login']);
       }
     )
   }
