@@ -4,6 +4,7 @@ import { from } from 'rxjs';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegistersComponent } from './views/registers/registers.component';
+import { HomesComponent } from './views/home/homes/homes.component';
 const routes: Routes = [
   // {
   //   path : '',
@@ -18,6 +19,8 @@ const routes: Routes = [
 
   {path: '', component: LoginComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'home', component: HomesComponent},
+
   {path: 'registers', component: RegistersComponent}
   // {path: 'member/:email', component: RegistersComponent }
   

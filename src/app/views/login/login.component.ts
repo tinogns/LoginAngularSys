@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   // loginForm : FormGroup;
   email:string;
   password:string;
+  
 
   constructor(
     private _userSupportService: UserSupport1Service,
@@ -25,19 +26,19 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(){
-    
-    // this.loginForm = new FormGroup({
-    //   email : new FormControl('',[Validators.required,Validators.email]),
-    //   password : new FormControl('',[Validators.required,Validators.minLength(6)])
-    // });
+    if (!this._userSupportService.checkEmptyValue(this.email, this.password)) return;
 
-    this._userSupportService.onRequestLogin(this.email, this.password, (response) => {
-      console.log(response);
+    this._userSupportService.onRequestLogin(this.email, this.password, response => {
+      
+      console.log(response.success)
+      if(response.success === 0){
+        console.log("login fail");
+        return
+      }
 
-        return;
-      });
+      this.router.navigate(['/home']);
+    });
 
-    
   }
 
 }

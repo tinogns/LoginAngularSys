@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegistersComponent } from './views/registers/registers.component';
+import { HomesComponent } from './views/home/homes/homes.component';
 
 
 
@@ -22,6 +23,12 @@ import { from } from 'rxjs';
 import {MatRadioModule} from '@angular/material/radio';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatGridListModule } from '@angular/material/grid-list';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
+
+
+
 
 
 
@@ -30,6 +37,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     AppComponent,
     LoginComponent,
     RegistersComponent,
+    HomesComponent,
+    
     
     
     
@@ -50,7 +59,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatNativeDateModule,
     MatFormFieldModule,
     HttpClientModule,
-    
+    MatGridListModule,
+    MatProgressSpinnerModule
     
   ],
   providers: [],

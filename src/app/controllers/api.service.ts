@@ -14,6 +14,7 @@ export class ApiService{
     constructor(private http: HttpClient){}
 
     requestLogin(email,password) {
+        console.log(`${this.baseUrl}/login`)
         const loginData ={
             email,
             password,
@@ -25,5 +26,28 @@ export class ApiService{
 
         return this.http
         .post(`${this.baseUrl}/login`, loginData, { headers })
+    }
+
+    requestProfile(
+        firstname,
+        email,
+        password,
+        phone
+    )
+    {
+        const ProfileData = {
+            firstname,
+            email,
+            password,
+            phone
+        };
+
+        let headers = new HttpHeaders({
+            'Content-Type': 'application/json; charset=utf-8',
+            
+          });
+        
+          return this.http
+      .put(`${this.baseUrl}/register`, ProfileData, { headers })
     }
 }
