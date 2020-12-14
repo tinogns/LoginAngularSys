@@ -47,7 +47,6 @@ export class UserSupport1Service {
         .requestProfile( firstname, email, password, phone)
         .subscribe(
           (response) => {
-            console.log(response)
             callback(response);
           },
           (error) => {
@@ -60,28 +59,11 @@ export class UserSupport1Service {
   }
 
   handleDisplayError(errorResponse) {
+
+    console.log(errorResponse)
     let displayErrorMsg: string;
 
-    if (errorResponse.hasOwnProperty('error')) {
-      this.errorMsgArr.some((el) => {
-        if (el.code !== errorResponse.error.code) {
-          displayErrorMsg = 'Server Error, please try again later';
-          return;
-        }
-      });
-
-      // Error from API
-      this.errorMsgArr.forEach((el) => {
-        if (errorResponse.error.code === el.code) {
-          displayErrorMsg = el.message;
-          return;
-        }
-      });
-    } else {
-      // Time out
-      displayErrorMsg =
-        'Looks like the server is taking to long to respond. Please try again later';
-    }
+    
 
     return displayErrorMsg;
   }

@@ -66,11 +66,10 @@ export class RegistersComponent implements OnInit {
 
       response => {
        console.log(response.success)
-       if(!response.success){
+       if(response.success === 0){
+
           this.showAlertBox = true;
-          this.alertMessage = this._userSupportService.handleDisplayError(
-            response
-          );
+          this.alertMessage = response.data
           return;
        }
        this.router.navigate(['/login']);
