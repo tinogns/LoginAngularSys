@@ -1,0 +1,81 @@
+
+    <mat-grid-list cols="1" rowHeight="fit" style="height: 100vh;">
+
+        <!-- Form EditUser -->
+        <mat-grid-tile rowspan="4">
+          <div class="section-form">
+            <h2 class="title-form">Edit</h2>
+            <div class="bottom-line"></div>
+            <div class="form-container">
+              <form 
+                class="login-form"
+                #editUserProfileForm="ngForm"
+                (ngSubmit)="editprofile()"
+                novalidate
+                >
+                <!-- username -->
+                <mat-form-field class="input-full-width" hideRequiredMarker>
+                  <mat-label>fistName</mat-label>
+                  <input 
+                    type="text"
+                    matInput
+                    name="fistName"
+                    [(ngModel)]="fistName"
+                    required
+                    #first_name="ngModel"
+                    required>
+                  <mat-error *ngIf="first_name.invalid || first_name.untouched">
+                    fistName is required
+                  </mat-error>
+                </mat-form-field>
+    
+                 <!-- E-mail -->
+                 <mat-form-field class="input-full-width" hideRequiredMarker>
+                    <mat-label>E-mail</mat-label>
+                    <input 
+                      type="text"
+                      matInput
+                      name="email"
+                      [(ngModel)]="email"
+                      required
+                      #userName="ngModel"
+                      required>
+                    <mat-error *ngIf="userName.invalid || userName.untouched">
+                      Username is required
+                    </mat-error>
+                  </mat-form-field>
+      
+                
+    
+                 <!-- Phone -->
+                 <mat-form-field class="input-full-width" hideRequiredMarker>
+                    <mat-label>Phone</mat-label>
+                    <input 
+                      type="text"
+                      matInput
+                      name="phone"
+                      [(ngModel)]="phone"
+                      required
+                      #userName="ngModel"
+                      required>
+    
+                  </mat-form-field>
+      
+                <!-- Spinner -->
+                <!-- <div class="spinner" *ngIf="showLoading">
+                  <mat-spinner strokeWidth="5" [diameter]="50"></mat-spinner>
+                </div> -->
+      
+                <!-- Alert box -->
+                <!-- <div class="alert alert-danger" *ngIf="showAlertBox">
+                  <h4>{{ alertMessage }}</h4>
+                </div> -->
+      
+                <button class="btn btn-sign-in"  mat-flat-button color="primary">Submit</button>
+                <button class="btn btn-sign-in" routerLink='/registers' mat-flat-button color="warn">Cancel</button>
+              </form>
+            </div>
+            <!-- <p class="copy-right-text">EASYFO Co., Ltd. © Copyright 1998-2020 All rights reserved.</p> -->
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>

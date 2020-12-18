@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegistersComponent } from './views/registers/registers.component';
 import { HomesComponent } from './views/home/homes/homes.component';
+import {EditUsersComponent} from './views/edit-users/edit-users.component'
 const routes: Routes = [
   // {
   //   path : '',
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'home', component: HomesComponent},
 
-  {path: 'registers', component: RegistersComponent}
+  {path: 'registers', component: RegistersComponent},
+  {path: 'edituser', component: EditUsersComponent},
   // {path: 'member/:email', component: RegistersComponent }
   
 ];

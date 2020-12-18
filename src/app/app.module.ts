@@ -1,14 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';// call api
-
+import {HttpClientModule , HttpInterceptor} from '@angular/common/http';// call api
+import {ApiService} from './controllers/api.service'
+import { AlertifyService } from './services/alertify.service';
+import { AuthService } from './services/auth.service';
 // Page
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegistersComponent } from './views/registers/registers.component';
 import { HomesComponent } from './views/home/homes/homes.component';
-
+import {UserSupport1Service} from './services/user-support.service'
+import {EditUsersComponent} from './views/edit-users/edit-users.component'
 
 
 // Materail
@@ -25,9 +28,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-
-
-
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatMenuModule} from '@angular/material/menu';
+import { NavbarComponent } from './views/shared/navbar/navbar.component';
 
 
 
@@ -38,8 +41,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     LoginComponent,
     RegistersComponent,
     HomesComponent,
-    
-    
+    NavbarComponent,
+    EditUsersComponent,
     
     
   ],
@@ -60,10 +63,20 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatFormFieldModule,
     HttpClientModule,
     MatGridListModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatToolbarModule,
+    MatMenuModule,
+    
     
   ],
-  providers: [],
+  providers: [
+  UserSupport1Service,
+  ApiService,
+  AlertifyService,
+  AuthService
+  
+],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

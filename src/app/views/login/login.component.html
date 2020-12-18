@@ -1,64 +1,66 @@
 <mat-grid-list cols="1" rowHeight="fit" style="height: 100vh;">
 
-    <!-- Form login -->
-    <mat-grid-tile rowspan="4">
-      <div class="section-form">
-        <h2 class="title-form">Login</h2>
-        <div class="bottom-line"></div>
-        <div class="form-container">
-          <form 
-            class="login-form"
-            #editUserProfileForm="ngForm"
-            (ngSubmit)="onLogin()"
-            novalidate
-            >
-            <!-- username -->
-            <mat-form-field class="input-full-width" hideRequiredMarker>
-              <mat-label>Username</mat-label>
-              <input 
-                type="text"
-                matInput
-                name="username"
-                [(ngModel)]="email"
-                required
-                #userName="ngModel"
-                required>
-              <mat-error *ngIf="userName.invalid || userName.untouched">
-                Username is required
-              </mat-error>
-            </mat-form-field>
-  
-            <!-- password -->
-            <mat-form-field class="input-full-width" hideRequiredMarker>
-              <mat-label>Password</mat-label>
-              <input 
-                type="password" 
-                matInput
-                name="password"
-                [(ngModel)]="password"
-                required
-                #pass="ngModel" 
-                required>
-              <mat-error *ngIf="pass.invalid || pass.untouched">
-                Password is required
-              </mat-error>
-            </mat-form-field>
-  
-            <!-- Spinner -->
-            <!-- <div class="spinner" *ngIf="showLoading">
-              <mat-spinner strokeWidth="5" [diameter]="50"></mat-spinner>
-            </div> -->
-  
-            <!-- Alert box -->
-            <!-- <div class="alert alert-danger" *ngIf="showAlertBox">
-              <h4>{{ alertMessage }}</h4>
-            </div> -->
-  
-            <button class="btn btn-sign-in"  mat-flat-button color="primary">Login</button>
-            <button class="btn btn-sign-in" routerLink='/registers' mat-flat-button color="primary">Register</button>
-          </form>
-        </div>
-        <!-- <p class="copy-right-text">EASYFO Co., Ltd. © Copyright 1998-2020 All rights reserved.</p> -->
+  <!-- Form login -->
+  <mat-grid-tile rowspan="4">
+    <div class="section-form">
+      <h2 class="title-form">Login</h2>
+      <div class="bottom-line"></div>
+      <div class="form-container">
+        <form 
+          class="login-form"
+          #editUserProfileForm="ngForm"
+          (ngSubmit)="onLogin()"
+          novalidate
+          >
+          <!-- username -->
+          <mat-form-field class="input-full-width" hideRequiredMarker>
+            <mat-label>Username</mat-label>
+            <input 
+              type="text"
+              matInput
+              name="username"
+              [(ngModel)]="email"
+              required
+              #userName="ngModel"
+              required>
+            <mat-error *ngIf="userName.invalid || userName.untouched">
+              Username is required
+            </mat-error>
+          </mat-form-field>
+
+          <!-- password -->
+          <mat-form-field class="input-full-width" hideRequiredMarker>
+            <mat-label>Password</mat-label>
+            <input 
+              type="password" 
+              matInput
+              name="password"
+              [(ngModel)]="password"
+              required
+              #pass="ngModel" 
+              required>
+            <mat-error *ngIf="pass.invalid || pass.untouched">
+              Password is required
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Spinner -->
+          <!-- <div class="spinner" *ngIf="showLoading">
+            <mat-spinner strokeWidth="5" [diameter]="50"></mat-spinner>
+          </div> -->
+
+          <!-- Alert box -->
+          <!-- <div class="alert alert-danger" *ngIf="showAlertBox">
+            <h4>{{ alertMessage }}</h4>
+          </div> -->
+
+          <button class="btn btn-sign-in"  mat-flat-button color="primary">Login</button>
+          <button class="btn btn-sign-in" routerLink='/registers' mat-flat-button color="primary">Register</button>
+        </form>
       </div>
-    </mat-grid-tile>
-  </mat-grid-list>
+      <!-- <p class="copy-right-text">EASYFO Co., Ltd. © Copyright 1998-2020 All rights reserved.</p> -->
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>
+
+

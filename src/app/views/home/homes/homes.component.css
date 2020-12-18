@@ -1,0 +1,14 @@
+
+/* .ul li {
+  list-style: none;
+} */
+
+#header {
+  position: relative;
+  float: none;
+  width: 798px;
+  height: 100px;
+  margin: 0 auto;
+  padding: 1px;
+  background-color: #cccccc;
+  }
