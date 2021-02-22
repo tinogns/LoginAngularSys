@@ -1,0 +1,80 @@
+<mat-grid-list id="main-content" cols="1" rowHeight="fit" style="height: 100vh">
+  <!-- Form edit profile -->
+  <mat-grid-tile rowspan="4">
+    <div class="section-form">
+      <h3 class="title-form">Update Password</h3>
+      <div class="bottom-line"></div>
+      <div class="form-container">
+        <form
+          class="edit-profile-form"
+          #editUserPasswordForm="ngForm"
+          (ngSubmit)="onEditUserPasswordSubmit()"
+          novalidate
+        >
+          <mat-form-field class="input-full-width" hideRequiredMarker>
+            <mat-label>New Password</mat-label>
+            <input
+              type="password"
+              matInput
+              name="new_password"
+              [(ngModel)]="newPassword"
+              #new_password="ngModel"
+              required
+            />
+            <mat-error *ngIf="new_password.invalid || new_password.untouched">
+              New password is required
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="input-full-width" hideRequiredMarker>
+            <mat-label>Confirm Password</mat-label>
+            <input
+              type="password"
+              matInput
+              name="confirm_password"
+              [(ngModel)]="confirmPassword"
+              #confirm_password="ngModel"
+              required
+            />
+            <mat-error
+              *ngIf="confirm_password.invalid || confirm_password.untouched"
+            >
+              Confirm password is required
+            </mat-error>
+          </mat-form-field>
+
+           <!-- Spinner -->
+           <div class="spinner" *ngIf="showLoading">
+            <mat-spinner strokeWidth="5" [diameter]="50"></mat-spinner>
+          </div>
+
+          <!-- Alert box -->
+          <div class="alert alert-danger" *ngIf="showAlertBox">
+            <h4>{{ alertMessage }}</h4>
+          </div>
+
+          <div class="btn-container">
+            <button
+              [disabled]="showLoading"
+              class="btn mr-1"
+              mat-flat-button
+              color="primary"
+            >
+              Update
+            </button>
+            <button
+              routerLink="/home"
+              [disabled]="showLoading"
+              mat-flat-button
+              class="btn"
+              color="warn"
+            >Close</button>
+          </div>
+        </form>
+      </div>
+      <p class="copy-right-text">
+        EASYFO Co., Ltd. © Copyright 1998-2020 All rights reserved.
+      </p>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>

@@ -4,10 +4,10 @@ import { environment } from '../../environments/environment';
 import { ErrorMsg } from '../views/shared/error-msg';
 import { BehaviorSubject } from 'rxjs';
 import { userprofile } from '../models/userprofile';
-import { AlertifyService } from './alertify.service';
 import { HttpClient } from '@angular/common/http';
+import * as CryptoJS from 'crypto-js';
 
-let baseUrl = environment.backend.host;
+
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,6 @@ export class UserSupport1Service {
   userprofile: any; 
   constructor(
     public _apiService: ApiService,
-    public alertify: AlertifyService,
     private http: HttpClient
   ) { }
 
@@ -27,7 +26,6 @@ export class UserSupport1Service {
         .requestLogin(email, password)
         .subscribe(
           (response) => {
-            this.alertify.success('Login Sucsess')
             this.userprofile = localStorage.setItem('userProfile', JSON.stringify(response))
 
             callback(response);
@@ -70,6 +68,27 @@ export class UserSupport1Service {
   
   }
 
+  onRequestEditPassword(newPassword, callback) {
+   
+      // Encrypt password
+      const publicKey = environment.backend.host;
+      const encryptPassword = CryptoJS.AES.encrypt(
+        newPassword,
+        publicKey
+      ).toString();
+
+      // Call API service
+      this._apiService.requestEditPassword(encryptPassword).subscribe(
+        (response) => {
+          callback(response);
+        },
+        (error) => {
+          callback(error);
+        }
+      );
+    
+  }
+
   handleDisplayError(errorResponse) {
 
     console.log(errorResponse)
@@ -80,35 +99,6 @@ export class UserSupport1Service {
     return displayErrorMsg;
   }
 
-  addUser(user: userprofile) {
-    let users = [];
-    if (localStorage.getItem('Users')) {
-      users = JSON.parse(localStorage.getItem('Users'));
-      users = [user, ...users];
-    } else {
-      users = [user];
-    }
-    localStorage.setItem('Users', JSON.stringify(users));
-  }
 
-  //edit user 
-  getAll() {
-    return this.http.get<userprofile[]>(baseUrl);
-  }
-
-  getById(id: string) {
-    return this.http.get<userprofile>(`${baseUrl}/${id}`);
-  }
-
-  create(params) {
-    return this.http.post(baseUrl, params);
-  }
-
-  update(id: string, params) {
-    return this.http.put(`${baseUrl}/${id}`, params);
-  }
-
-  delete(id: string) {
-    return this.http.delete(`${baseUrl}/${id}`);
-  }
+  
 }
